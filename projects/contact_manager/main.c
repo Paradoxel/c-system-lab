@@ -1,4 +1,5 @@
 #include<stdlib.h>
+#include<string.h>
 #define MAX_NAME 20
 #define MAX_PHONE 12
 #define MAX_EMAIL 30
@@ -27,4 +28,13 @@ int init_manager(ContactManager *contactManager){
         return 0;
     }
     return 1;
+}
+
+
+void destroy_manager(ContactManager *contactManager)
+{
+    free(contactManager->contacts);
+    contactManager->capacity=0;
+    contactManager->current_size=0;
+    contactManager->contacts=NULL;
 }
