@@ -16,3 +16,15 @@ typedef struct
     size_t current_size;
     size_t capacity;
 } ContactManager ;
+
+
+
+int init_manager(ContactManager *contactManager){
+    contactManager->current_size=0;
+    contactManager->capacity=2 ;
+    contactManager->contacts=malloc(contactManager->capacity*sizeof *contactManager->contacts);
+    if(contactManager->contacts==NULL){
+        return 0;
+    }
+    return 1;
+}
