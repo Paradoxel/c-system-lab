@@ -96,3 +96,31 @@ void find_contact(const ContactManager *manager)
     }
     printf("\nNot Found");
 }
+
+
+
+void remove_contact(ContactManager *manager)
+{
+    int target_id;
+    printf("ID:");
+    scanf("%d",&target_id);
+    size_t i=0;
+    size_t index;
+    while(i<manager->current_size)
+    {
+        if(manager->contacts[i].id==target_id){
+            index=i;
+            printf("DELETING..");
+            for(int i=index+1;i<manager->current_size;i++)
+            {
+                manager->contacts[i-1]=manager->contacts[i];
+            }
+            printf("Succesfull DELETING");
+            manager->current_size--;
+            return;
+        }
+        i++;
+    }    
+    printf("\nNOT FOUND");
+
+}
