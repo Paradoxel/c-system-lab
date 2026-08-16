@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #define MAX_NAME 20
@@ -37,4 +38,21 @@ void destroy_manager(ContactManager *contactManager)
     contactManager->capacity=0;
     contactManager->current_size=0;
     contactManager->contacts=NULL;
+}
+
+
+
+void add_contact(ContactManager *manager){
+    Contact *contact=&(manager->contacts[manager->current_size]);
+    printf("Name :");
+    fgets(contact->name,sizeof(contact->name),stdin);
+    
+    printf("Phone :");
+    fgets(contact->phone,sizeof(contact->phone),stdin);
+
+    printf("Email :");
+    fgets(contact->email,sizeof(contact->email),stdin);
+    
+
+    manager->current_size++;
 }
