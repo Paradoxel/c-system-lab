@@ -154,7 +154,8 @@ void add_contact(ContactManager *manager)
         Contact *contact=&(manager->contacts[manager->current_size]);
         printf("ID:");
         scanf("%d",&(contact->id));
-
+        // Clear Buffer
+        clear_input();
         printf("Name:");
         fgets(contact->name,sizeof *contact->name,stdin);
 
@@ -169,4 +170,16 @@ void add_contact(ContactManager *manager)
         return;
     }
     printf("\nTry Again");
+}
+
+
+void clear_input()
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF)
+    {
+    }
+    
+
+
 }
