@@ -56,3 +56,22 @@ void add_contact(ContactManager *manager){
 
     manager->current_size++;
 }
+
+
+void list_contacts(const ContactManager *manager)
+{
+
+    size_t i=0;
+    while(i<manager->current_size)
+    {
+        printf("-%zu\n", i);
+        printf("Name : %s\t",manager->contacts[i].name);
+        printf("Phone : %s\t",manager->contacts[i].phone);
+        printf("Email : %s\t",manager->contacts[i].email);
+        printf("\n");
+        i++;
+    }
+
+
+
+}
