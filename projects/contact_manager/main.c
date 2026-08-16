@@ -158,13 +158,15 @@ void add_contact(ContactManager *manager)
         clear_input();
         printf("Name:");
         fgets(contact->name,sizeof *contact->name,stdin);
-
+        remove_newline(contact->name);
 
         printf("Phone:");
         fgets(contact->phone,sizeof *contact->phone,stdin);
+        remove_newline(contact->phone);
 
         printf("Email:");
         fgets(contact->email,sizeof *contact->email,stdin);
+        remove_newline(contact->email);
 
         manager->current_size++;
         return;
@@ -178,6 +180,24 @@ void clear_input()
     int c;
     while ((c = getchar()) != '\n' && c != EOF)
     {
+    }
+    
+
+
+}
+
+void remove_newline(char *c)
+{
+
+
+    while(*c!='\0')
+    {
+        if(*c=='\n')
+        {
+            *c='\0';
+            return;
+        }
+        c++;
     }
     
 
