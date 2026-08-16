@@ -7,6 +7,7 @@
 
 typedef struct 
 {
+    int id;
     char name[MAX_NAME];
     char phone[MAX_PHONE];
     char email[MAX_EMAIL];
@@ -72,6 +73,26 @@ void list_contacts(const ContactManager *manager)
         i++;
     }
 
+}
 
 
+void find_contact(const ContactManager *manager)
+{
+    int target_id;
+    printf("Please Enter ID: ");
+    scanf("%d",&target_id);
+    size_t i=0;
+    while(i<manager->current_size)
+    {
+        if(manager->contacts[i].id==target_id)
+        {
+            printf("FOUND!");
+            printf("Name : %s\t",manager->contacts[i].name);
+            printf("Phone : %s\t",manager->contacts[i].phone);
+            printf("Email : %s\t",manager->contacts[i].email);
+            return;
+        }
+        i++;
+    }
+    printf("\nNot Found");
 }
