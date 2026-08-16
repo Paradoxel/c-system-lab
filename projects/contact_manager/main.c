@@ -127,23 +127,46 @@ void remove_contact(ContactManager *manager)
 
 
 
-void ensure_capacity(ContactManager *manager)
+int ensure_capacity(ContactManager *manager)
 {
 
     if(manager->current_size<manager->capacity){
         printf("Has the necessary space...");
-        return;
+        return 1;
     }
     printf("Expanding the necessary space");
     size_t new_capacity = manager->capacity*2;
     Contact *tmp=realloc(manager->contacts,new_capacity * sizeof *manager->contacts);
     if(tmp==NULL){
         printf("Unsuccessful");
-        return;
+        return 0;
     }
     manager->contacts=tmp;
     manager->capacity=new_capacity;
-    return;
+    return 1;
+
+}
+
+void add_contact(ContactManager *manager)
+{
+
+    if(ensure_capacity(manager)){
+        Contact *contact=&(manager->contacts[manager->current_size]);
+        printf("ID:");
+        scanf("%d",&(contact->id));
+
+        printf("Name:");
+        fgets(contact->name,sizeof *contact->name,stdin);
 
 
+        printf("Phone:");
+        fgets(contact->phone,sizeof *contact->phone,stdin);
+
+        printf("Email:");
+        fgets(contact->email,sizeof *contact->email,stdin);
+
+        manager->current_size++;
+        return;
+    }
+    printf("\nTry Again");
 }
