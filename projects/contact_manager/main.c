@@ -211,3 +211,54 @@ int id_exists(const ContactManager *manger,int id)
 
 
 }
+
+
+
+void update_contact(ContactManager *manager)
+{
+
+    printf("ID : ");
+    int id;
+    scanf("%d",&id);
+    clear_input();
+    for(size_t i=0;i<manager->current_size;i++)
+    {
+        if(manager->contacts[i].id==id){
+            Contact *contact=&manager->contacts[i];
+            printf("Contact Found...\nEnter for skip:\n");
+            printf("Name : ");
+            char name[MAX_NAME];
+            if(fgets(name,sizeof(name),stdin)!=NULL){
+                    remove_newline(name);
+                    if(name[0]!='\0'){
+                        strcpy(contact->name,name);
+                    }
+                    
+            }
+
+
+            printf("Email : ");
+            char email[MAX_EMAIL];
+            if(fgets(email,sizeof(email),stdin)!=NULL){
+                remove_newline(email);
+                if(email[0]!='\0'){
+                    strcpy(contact->email,email); 
+                }
+            }
+
+            printf("Phone : ");
+            char phone[MAX_PHONE];
+            if(fgets(phone,sizeof(phone),stdin)!=NULL)
+            {
+                remove_newline(phone);
+                if(phone[0]!='\0'){
+                strcpy(contact->phone,phone);                    
+                }
+
+            }
+            printf("Successfully updated.");
+            return;  
+        }
+    }
+    printf("Did not found ");
+}
