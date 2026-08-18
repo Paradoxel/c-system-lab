@@ -44,6 +44,11 @@ void destroy_manager(ContactManager *contactManager)
 
 
 void add_contact(ContactManager *manager){
+    if(!ensure_capacity(manager))
+    {
+        printf("An error occurred.\nplease try again.");
+        return;
+    }
     Contact *contact=&(manager->contacts[manager->current_size]);
     int id;
     printf("ID :");
