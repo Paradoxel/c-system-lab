@@ -147,33 +147,6 @@ int ensure_capacity(ContactManager *manager)
 
 }
 
-void add_contact(ContactManager *manager)
-{
-
-    if(ensure_capacity(manager)){
-        Contact *contact=&(manager->contacts[manager->current_size]);
-        printf("ID:");
-        scanf("%d",&(contact->id));
-        // Clear Buffer
-        clear_input();
-        printf("Name:");
-        fgets(contact->name,sizeof *contact->name,stdin);
-        remove_newline(contact->name);
-
-        printf("Phone:");
-        fgets(contact->phone,sizeof *contact->phone,stdin);
-        remove_newline(contact->phone);
-
-        printf("Email:");
-        fgets(contact->email,sizeof *contact->email,stdin);
-        remove_newline(contact->email);
-
-        manager->current_size++;
-        return;
-    }
-    printf("\nTry Again");
-}
-
 
 void clear_input()
 {
