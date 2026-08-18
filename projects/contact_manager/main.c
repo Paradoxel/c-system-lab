@@ -111,7 +111,7 @@ void remove_contact(ContactManager *manager)
         if(manager->contacts[i].id==target_id){
             index=i;
             printf("DELETING..");
-            for(int i=index+1;i<manager->current_size;i++)
+            for(size_t i=index+1;i<manager->current_size;i++)
             {
                 manager->contacts[i-1]=manager->contacts[i];
             }
