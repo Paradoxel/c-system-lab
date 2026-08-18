@@ -45,6 +45,17 @@ void destroy_manager(ContactManager *contactManager)
 
 void add_contact(ContactManager *manager){
     Contact *contact=&(manager->contacts[manager->current_size]);
+    int id;
+    printf("ID :");
+    scanf("%d",&id);
+    if(id_exists(manager,id))
+    {
+        printf("ID already exists!\n");
+        clear_input();
+        return;
+    }
+    clear_input();
+    contact->id=id;
     printf("Name :");
     fgets(contact->name,sizeof(contact->name),stdin);
     
@@ -53,7 +64,10 @@ void add_contact(ContactManager *manager){
 
     printf("Email :");
     fgets(contact->email,sizeof(contact->email),stdin);
-    
+    // clear \n in string
+    remove_newline(contact->name);
+    remove_newline(contact->phone);
+    remove_newline(contact->email);
 
     manager->current_size++;
 }
@@ -173,6 +187,22 @@ void remove_newline(char *c)
         c++;
     }
     
+
+
+}
+
+
+int id_exists(const ContactManager *manger,int id)
+{
+
+    for(size_t i=0;i<manger->current_size;i++)
+    {
+        if(manger->contacts[i].id==id)
+        {
+            return 1;
+        }
+    }
+    return 0;
 
 
 }
