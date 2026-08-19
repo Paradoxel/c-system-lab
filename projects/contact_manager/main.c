@@ -123,8 +123,10 @@ void find_contact(const ContactManager *manager)
 void remove_contact(ContactManager *manager)
 {
     int target_id;
-    printf("ID:");
-    scanf("%d",&target_id);
+    if(!read_int(&target_id)){
+        printf("Invalid ID.\n");
+        return;
+    }
     size_t i=0;
     size_t index;
     while(i<manager->current_size)
