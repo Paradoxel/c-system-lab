@@ -51,15 +51,15 @@ void add_contact(ContactManager *manager){
     }
     Contact *contact=&(manager->contacts[manager->current_size]);
     int id;
-    printf("ID :");
-    scanf("%d",&id);
+    if(!read_int(&id)){
+        printf("Invalid ID.\n");
+        return;
+    }
     if(id_exists(manager,id))
     {
         printf("ID already exists!\n");
-        clear_input();
         return;
     }
-    clear_input();
     contact->id=id;
     printf("Name :");
     fgets(contact->name,sizeof(contact->name),stdin);
@@ -261,4 +261,14 @@ void update_contact(ContactManager *manager)
         }
     }
     printf("Did not found ");
+}
+
+
+int read_int(int *value)
+{
+    int result=scanf("%d",value);
+
+    clear_input();
+    return result==1;
+
 }
