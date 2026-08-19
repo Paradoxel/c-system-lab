@@ -98,8 +98,10 @@ void list_contacts(const ContactManager *manager)
 void find_contact(const ContactManager *manager)
 {
     int target_id;
-    printf("Please Enter ID: ");
-    scanf("%d",&target_id);
+    if(!read_int(&target_id)){
+        printf("Invalid ID.\n");
+        return;
+    }
     size_t i=0;
     while(i<manager->current_size)
     {
