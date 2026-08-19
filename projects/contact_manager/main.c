@@ -223,8 +223,10 @@ void update_contact(ContactManager *manager)
 
     printf("ID : ");
     int id;
-    scanf("%d",&id);
-    clear_input();
+    if(!read_int(&id)){
+        printf("Invalid ID.\n");
+        return;
+    }
     for(size_t i=0;i<manager->current_size;i++)
     {
         if(manager->contacts[i].id==id){
@@ -264,7 +266,7 @@ void update_contact(ContactManager *manager)
             return;  
         }
     }
-    printf("Did not found ");
+    printf("Contact not found.\n");
 }
 
 
