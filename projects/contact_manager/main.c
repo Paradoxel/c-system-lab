@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
+#include<limits.h>
 #define MAX_NAME 20
 #define MAX_PHONE 12
 #define MAX_EMAIL 30
@@ -276,5 +278,51 @@ int read_int(int *value)
 
     clear_input();
     return result==1;
+
+}
+
+
+int parse_int(int *value)
+{
+    char buffer[100];
+    
+    if(fgets(buffer,sizeof(buffer),stdin)==NULL)
+    {
+        return 0;
+    }
+
+    int flag=1;
+    remove_newline(buffer);
+    char *c=buffer;
+    if(buffer[0]=='\0')
+    {
+        return 0;
+    }
+    while(*c!='\0')
+    {
+        if(isdigit(*c)){
+
+        }
+        else if(flag && *c=='-')
+        {
+
+        }
+        else{
+            return 0;
+        }
+        flag=0;
+        c++;
+    }
+
+    char *end;
+    long result=strtol(buffer,&end,10);
+    if (result >= INT_MIN && result <= INT_MAX)
+    {
+        *value = (int)result;
+        return 1;
+    }
+    return 0;
+
+
 
 }
